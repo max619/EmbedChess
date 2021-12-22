@@ -1,0 +1,38 @@
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+if(DEFINED GCC_ARM_TOOLCHAIN_PATH)
+   set(GCC_ARM_TOOLCHAIN_PATH "${GCC_ARM_TOOLCHAIN_PATH}/")
+endif()
+
+set(COMPILER_PREFIX arm-none-eabi-)
+set(CMAKE_C_COMPILER "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}gcc.exe")
+set(CMAKE_ASM_COMPILER "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}gcc.exe")
+set(CMAKE_CXX_COMPILER "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}g++.exe")
+set(OBJCOPY_EXE "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}objcopy.exe")
+set(CMAKE_LINKER "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}ld.exe")
+
+set(SZ_EXE "${GCC_ARM_TOOLCHAIN_PATH}/${COMPILER_PREFIX}size.exe")
+
+SET(ASM_OPTIONS "-x assembler-with-cpp")
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+
+set(MCU "-mcpu=cortex-m3 -mthumb")
+
+set(CMAKE_C_FLAGS_INIT "${MCU} -Wall -Werror -fdata-sections -ffunction-sections")
+set(CMAKE_ASM_FLAGS_INIT "${MCU} -Wall -Werror -fdata-sections -ffunction-sections")
+set(CMAKE_CXX_FLAGS_INIT "${MCU} -Wall -Werror -fdata-sections -ffunction-sections -fno-exceptions")
+set(CMAKE_EXE_LINKER_FLAGS "${MCU} -T${PROJECT_SOURCE_DIR}/STM32F103C8Tx_FLASH.ld -lc -lm -lnosys --specs=nosys.specs -Wl,--gc-sections")
+
+
+set(CMAKE_C_FLAGS_DEBUG_INIT "-O0")
+set(CMAKE_CXX_FLAGS_DEBUG_INIT "-O0")
+
+set(CMAKE_C_FLAGS_RELEASE_INIT "-O3")
+set(CMAKE_CXX_FLAGS_RELEASE_INIT "-O3")
+
+SET(CMAKE_EXECUTABLE_SUFFIX .elf)

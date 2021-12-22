@@ -1,0 +1,40 @@
+﻿{
+  "configurations": [
+    {
+      "name": "Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "${projectDir}/toolchain.cmake",
+      "inheritEnvironments": [ "gcc-arm" ],
+      "variables": [
+        {
+          "name": "GCC_ARM_TOOLCHAIN_PATH",
+          "value": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/"
+        }
+      ]
+    },
+    {
+      "name": "Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "${projectDir}/toolchain.cmake",
+      "inheritEnvironments": [ "gcc-arm" ],
+      "variables": [
+        {
+          "name": "GCC_ARM_TOOLCHAIN_PATH",
+          "value": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/"
+        }
+      ]
+    }
+  ]
+}
